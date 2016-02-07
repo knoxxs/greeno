@@ -1,6 +1,6 @@
 var app = app || {};
 
-var Product = Backbone.Model.extend({
+app.Product = Backbone.Model.extend({
     defaults:{
         title: '',
         brandName: '',
