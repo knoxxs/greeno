@@ -1,6 +1,6 @@
 var app = app || {};
 
-app.Product = Backbone.Model.extend({
+app.Battery = Backbone.Model.extend({
     defaults:{
         title: '',
         brandName: '',

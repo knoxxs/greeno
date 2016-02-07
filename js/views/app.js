@@ -3,50 +3,69 @@ var app = app || {};
 app.AppView = Backbone.View.extend({
     el: '#greeno-app',
     
-    template: _.template($('#usage-calculator-template').html()),
+//    template: _.template($('#usage-calculator-template').html()),
+    
     
     events:{
-        'click #calculate-usage': 'calculateUsage'
+        'click #submit-usage': 'calculateUsage',
+        'click #submit-market': 'submitMarket',
+        'click #checkout': 'submit'
     },
-    
+
     initialize: function(){
         this.$usageCalculator = this.$('#usage-calculator');
         
-        this.products = new app.Products();
-        
-        this.products.create({
-                                title: 'Sample solar panel',
-                                brandName: 'SampleBrand ',
-                                image: '',
-                                price: 122
-                            });
-        
-        this.$market = this.$('#market ul');
+        this.$usageCalculator = this.$('#usage-calculator');
+        this.$market = this.$('#market');
+        this.$appliance = this.$('#appliance');
+        this.$applianceCount = this.$('#appliance-count');
+        this.$powerUsage = this.$('#power-usage');
+        this.$marketOptions = this.$('#market-options');
+        this.$submitMarket = this.$marketOptions.find('#submit-market')
+        this.$checkout = this.$marketOptions.find('#checkout')
     },
     
     render: function(){
-        this.$usageCalculator.html(this.template( {panelNum: this.panelNum, billReduction: this.billReduction} ));
+        this.$usageCalculator.toggleClass('hidden', false);
+        this.$market.toggleClass('hidden', true);
         
-        if (this.panelNum && this.billReduction){
-            this.products.each(this.renderProduct, this);
-        }
-        
-        this.$billUsage = this.$('#bill-usage');
+        return this;
     },
     
-    renderProduct: function(product){
-        var productView = new app.ProductView({model: product});
-        this.$market.append(productView.render().el);
+    renderSolarPanelMarket: function(){
+        this.$usageCalculator.toggleClass('hidden');
+        this.$market.toggleClass('hidden');
+        
+        this.$marketOptions.toggleClass('hidden');
+        var solarPanelMarketView = new app.SolarPanelMarketView();
+        solarPanelMarketView.render(this.panelNum);
     },
+    
     
     calculateUsage: function(){
-        var billUsage = this.$billUsage.val().trim();
-        
+        var powerUsage = this.$powerUsage.val().trim();
+
+        if (powerUsage){
+            //todo calculate for power
+        } else{
+            //todo calculate for appliance
+            var appliance = this.$appliance.val().trim();
+            var applianceCount = this.$applianceCount.val().trim();
+            
+        }
         //todo write the formula here
+
+        this.panelNum = 10;
+        this.batteryNum = 1;
+
+        this.renderSolarPanelMarket();
+    },
+    
+    submitMarket: function() {
+        //todo find selected panel
         
-        this.panelNum = 1;
-        this.billReduction = 100;
-        
-        this.render();
+        this.$submitMarket.toggleClass('hidden');
+        var batteriesMarketView = new app.BatteriesMarketView();
+        batteriesMarketView.render(this.batteryNum);
     }
 });

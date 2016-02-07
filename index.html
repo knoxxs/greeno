@@ -9,45 +9,83 @@
         <header id="header">
 <!--            todo header-->
         </header>
-        <section id="usage-calculator">
-            
-        </section>
-        
-        <section id="market">
-            <ul>
+        <section id="main">
+            <section id="usage-calculator">
+                <h2> Need / Requirement</h2>
+                <div>
+                    <label>Appliances:</label>
+                    <select id="appliance">
+                      <option value="led">LED</option>
+                      <option value="induction">Induction</option>
+                    </select>
+                </div>
+
+                <div>
+                <label>Count:</label><input type=text id="appliance-count">
+                </div>
                 
-            </ul>
+                <h4>Or</h4>
+
+                <div>
+                <label>Power Usage</label><input type="text" id="power-usage">
+                </div>
+                    
+                <button type="submit" id="submit-usage">Choose Panels</button>
+
+            </section>
+
+            <section id="market"></section>
+            
+            <div id="market-options" class="hidden">
+                <button type="submit" id="submit-market">Choose Batteries</button>
+                <button type="submit" id="checkout" >Checkout</button>
+            </div>
         </section>
-        
         <footer id="footer">
             
         </footer>
     </section>
     
+<!--
     <script type="text/template" id="usage-calculator-template">
-        <div><label>Bill usage</label> <input type="text" id="bill-usage"></div>
-        <div><button type="submit" id="calculate-usage">Find no. of panels</button></div>
+        <div><input type="text" id="bill-usage" placeholder="Enter your bill usage"></div>
         <div><label>No. of panels you need: <%= panelNum %></label></div>
         <div><label>Bill will reduce to: <%= billReduction %></label></div>
+    </script>
+-->
+    
+    <script type="text/template" id="solar-panel-market-template">
+        <h2>Solar Panels</h2>
+        <h5>Need <%= panelNum %> panels </h5>
+        <ul class="listing"></ul>
+    </script>
+    
+    <script type="text/template" id="batteries-market-template">
+        <h2>Batteries</h2>
+        <h5>Need <%= batteryNum %> batteries </h5>
+        <ul class="listing"></ul>
     </script>
     
     <script type="text/template" id="product-template">
         <header>
             <div class="title"><label><%= title %></label></div> | <div class="brand"><label><%= brandName %></label></div>
-        <header>
-        <img href="<%= image %>">
-        <div class="price"><label><%= price %></label></div>
+        </header>
+        <img src="<%= image %>">
+        <div class="price"><label>₹ <%= price %></label></div>
     </script>
         
     <script src="js/lib/jquery.min.js"></script>
     <script src="js/lib/underscore-min.js"></script>
     <script src="js/lib/backbone-min.js"></script>
     <script src="js/lib/backbone.localStorage-min.js"></script>
-    <script src="js/models/product.js"></script>
-    <script src="js/collections/products.js"></script>
+    <script src="js/models/solarPanel.js"></script>
+    <script src="js/models/battery.js"></script>
+    <script src="js/collections/batteries.js"></script>
+    <script src="js/collections/solarPanels.js"></script>
     <script src="js/views/product.js"></script>
     <script src="js/views/app.js"></script>
-    <script src="js/routers/router.js"></script>
+    <script src="js/views/batteries-market.js"></script>
+    <script src="js/views/solar-panel-market.js"></script>
     <script src="js/app.js"></script>
     
     

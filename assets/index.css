@@ -5,11 +5,11 @@ body {
 }
 
 body {
-	font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font: 14px 'Heiti SC', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	line-height: 1.4em;
-	background: #eaeaea url('bg.png');
+	background: #fafafa;
 	color: #4d4d4d;
-	width: 550px;
+	width: 100%;
 	margin: 0 auto;
 	-webkit-font-smoothing: antialiased;
 	-moz-font-smoothing: antialiased;
@@ -22,16 +22,106 @@ body {
 	display: none;
 }
 
+#main .market-options{
+    display: none;
+}
+
+#usage-calculator {
+    padding: 5px;
+}
+
+h2 {
+    text-align: center;
+    font-size:40px;
+    color: black;
+    border-bottom: 1px solid;
+    padding: 10px;
+    padding-bottom: 20px;
+    -webkit-box-shadow: 0 4px 4px -6px black;
+    -moz-box-shadow: 0 4px 4px -6px black;
+    box-shadow: 0 4px 4px -6px black;
+}
+
+#usage-calculator h4 {
+    margin-left: 100px;
+    font-size:20px;
+    color: black;
+    
+}
 #usage-calculator div {
     display: block;
     overflow: auto;
     clear: both;
+    margin: 5px;
 }
 
-#usage-calculator {
-    width: 250px;
+#usage-calculator div label{
+    margin: 20px;
+}
+
+#usage-calculator #bill-usage {
+    height: 50px;
+    width: 400px;
+    font-size: 1rem;
+    font-family: 'Heiti SC';
+    border: 1px solid #00BFFF ;
 }
 
 #usage-calculator button {
-    float: right;
+    margin-left: 180px;
+    margin-top: 10px;
+}
+
+#market {
+    padding: 5px;
+    position: relative;
+}
+#market .listing li {
+    height: 115px;
+    width: 500px;
+    overflow: hidden;
+    margin: 50px;
+    position: relative;
+    
+    -webkit-box-shadow: 0 0 4px blue;
+    -moz-box-shadow: 0 0 4px black;
+    box-shadow: 0 0 5px 0 black;
+}
+
+#market .listing li img{
+    height:100px;
+    width: 100px;
+    border: 2px solid black;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    
+}
+#market .listing li header{
+    position: absolute;
+    top: 5px;
+    left: 120px;
+    font-size: 15px;
+    font-weight: 900;
+}
+
+#market .listing li header div{
+    display: inline;
+}
+
+#market .listing li div.price {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+#market h5{
+    position: absolute;
+    right: 5px;
+    top: 50px;
+}
+
+
+#main #market-options {
+    margin-left: 300px;
 }
