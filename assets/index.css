@@ -97,6 +97,7 @@ h2 {
     left: 5px;
     
 }
+
 #market .listing li header{
     position: absolute;
     top: 5px;
@@ -124,4 +125,11 @@ h2 {
 
 #main #market-options {
     margin-left: 300px;
+}
+
+
+#market .listing li input{
+    position: absolute;
+    right: 5px;
+    top: 5px;
 }

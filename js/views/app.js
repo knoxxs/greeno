@@ -9,7 +9,7 @@ app.AppView = Backbone.View.extend({
     events:{
         'click #submit-usage': 'calculateUsage',
         'click #submit-market': 'submitMarket',
-        'click #checkout': 'submit'
+        'click #checkout': 'checkout'
     },
 
     initialize: function(){
@@ -62,10 +62,35 @@ app.AppView = Backbone.View.extend({
     },
     
     submitMarket: function() {
-        //todo find selected panel
+        this.$selectedPanel = this.$market.find('input[type="radio"]:checked');
         
-        this.$submitMarket.toggleClass('hidden');
-        var batteriesMarketView = new app.BatteriesMarketView();
-        batteriesMarketView.render(this.batteryNum);
+        if (this.$selectedPanel && this.$selectedPanel.length){
+            this.selectedPanelId = this.$market.find('input[type="radio"]:checked')[0].value;
+        
+            this.$submitMarket.toggleClass('hidden');
+            var batteriesMarketView = new app.BatteriesMarketView();
+            batteriesMarketView.render(this.batteryNum);
+        }else{
+            alert("Pls select one panel first.");
+        }
+    },
+    
+    checkout: function(){
+        this.$selectedBattery = this.$market.find('input[type="radio"]:checked');
+        
+        if (this.$selectedBattery && this.$selectedBattery.length){
+            this.selectedBatteryId = this.$market.find('input[type="radio"]:checked')[0].value;
+        }
+        
+        this.$checkout.toggleClass('hidden');
+//            var checkoutView = new app.CheckoutView();
+//            checkoutView.render(this.selectedPanelId, this.selectedBatteryId);
+            var batteries = new app.Batteries();
+            var panels = new app.SolarPanels();
+            panels.fetch(); batteries.fetch();
+            var selectedPanel = panels.get(this.selectedPanelId);
+            var selectedBattery = batteries.get(this.selectedBatteryId);
+            var price = this.panelNum + " * " + selectedPanel.get('price') + " + " + this.batteryNum + " * " + selectedBattery.get('price') + " = ₹" + (this.panelNum * selectedPanel.get('price') + this.batteryNum  *  selectedBattery.get('price'));
+            alert("[checked out] panels: " + selectedPanel.get('title')  +",  batteris: "+ selectedBattery.get('title') +", price: " + price);
     }
 });
